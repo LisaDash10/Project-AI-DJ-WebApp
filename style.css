@@ -20,10 +20,11 @@ body {
     font-size: 20px;
     padding: 10px;
     box-shadow: 5px 5px 5px grey;
+    margin-bottom: 15px;
 }
 
 canvas {
     border: 5px solid white;
     border-radius: 10px;
-    margin: 10px;
+    margin-top: 55px;
 }
