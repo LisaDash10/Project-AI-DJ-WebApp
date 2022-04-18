@@ -1,10 +1,12 @@
 song_1 = "";
 song_2 = "";
+song_playing = "";
 
 leftWristX = 0;
 rightWristX = 0;
 leftWristY = 0;
 rightWristY = 0;
+score_leftWrist = 0;
 
 function preload() {
     song_1 = loadSound("music.mp3");
@@ -25,6 +27,20 @@ function setup() {
 
 function draw() {
     image(video, 0, 0, 600, 600);
+    fill('#FF0000');
+    stroke('#FF0000');
+    song_playing = song_1.isPlaying();
+    if(score_leftWrist > 0.2) {
+        circle(leftWristX, leftWristY, 20);
+        song_2.stop();
+
+        if(song_playing = false) {
+            song_1.play();
+            document.getElementById("song_name").innerHTML = "Song Name - Harry Potter Theme Song ";
+        }
+    }
+    
+    
 }
 
 function modelLoaded() {
@@ -34,6 +50,8 @@ function modelLoaded() {
 function gotPoses(results) {
     if(results.length > 0) {
         console.log(results);
+        score_leftWrist = results[0].pose.keypoints[9].score;
+        console.log("score of leftWrist = " + score_leftWrist);
         leftWristX = results[0].pose.leftWrist.x;
         leftWristY = results[0].pose.leftWrist.y;
         console.log("leftWrist X = " + leftWristX + "leftWrist Y = " + leftWristY);
